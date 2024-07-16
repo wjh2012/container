@@ -1,8 +1,8 @@
 services:
   dni-html:
-    container_name: $
+    container_name: $name
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:80
+      - 3101:3100
