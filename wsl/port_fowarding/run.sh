@@ -1,0 +1,1 @@
+PowerShell.exe -ExecutionPolicy Bypass -File C:\Users\wjh20\Desktop\ports_wsl.ps1
