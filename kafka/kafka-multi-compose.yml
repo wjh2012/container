@@ -12,6 +12,7 @@ services:
     networks:
       - app-tier
     environment:
+      - KAFKA_KRAFT_CLUSTER_ID=test-multi-broker
       - KAFKA_CFG_NODE_ID=1
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-broker-1:9093,2@kafka-broker-2:9093,3@kafka-broker-3:9093
@@ -32,6 +33,7 @@ services:
     networks:
       - app-tier
     environment:
+      - KAFKA_KRAFT_CLUSTER_ID=test-multi-broker
       - KAFKA_CFG_NODE_ID=2
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-broker-1:9093,2@kafka-broker-2:9093,3@kafka-broker-3:9093
@@ -52,6 +54,7 @@ services:
     networks:
       - app-tier
     environment:
+      - KAFKA_KRAFT_CLUSTER_ID=test-multi-broker
       - KAFKA_CFG_NODE_ID=3
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-broker-1:9093,2@kafka-broker-2:9093,3@kafka-broker-3:9093
