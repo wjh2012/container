@@ -7,7 +7,6 @@ services:
     image: "bitnami/kafka:latest"
     container_name: kafka-broker-1
     ports:
-      - "9094:9094"
       - "59094:59094"
     networks:
       - app-tier
@@ -21,6 +20,7 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_PROVISIONING_REPLICATIONFACTOR=3
     volumes:
       - $HOME/kafka_data_1:/bitnami/kafka
 
@@ -28,7 +28,6 @@ services:
     image: "bitnami/kafka:latest"
     container_name: kafka-broker-2
     ports:
-      - "9095:9095"
       - "59095:59095"
     networks:
       - app-tier
@@ -42,6 +41,7 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_PROVISIONING_REPLICATIONFACTOR=3
     volumes:
       - $HOME/kafka_data_2:/bitnami/kafka
 
@@ -49,7 +49,6 @@ services:
     image: "bitnami/kafka:latest"
     container_name: kafka-broker-3
     ports:
-      - "9096:9096"
       - "59096:59096"
     networks:
       - app-tier
@@ -63,5 +62,6 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_PROVISIONING_REPLICATIONFACTOR=3
     volumes:
       - $HOME/kafka_data_3:/bitnami/kafka
