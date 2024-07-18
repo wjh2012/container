@@ -22,7 +22,7 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_PROVISIONING_REPLICATIONFACTOR=3
     volumes:
-      - $HOME/kafka_data_1:/bitnami/kafka
+      - kafka_data_1:/bitnami/kafka
 
   kafka-broker-2:
     image: "bitnami/kafka:latest"
@@ -43,7 +43,7 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_PROVISIONING_REPLICATIONFACTOR=3
     volumes:
-      - $HOME/kafka_data_2:/bitnami/kafka
+      - kafka_data_2:/bitnami/kafka
 
   kafka-broker-3:
     image: "bitnami/kafka:latest"
@@ -64,4 +64,9 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_PROVISIONING_REPLICATIONFACTOR=3
     volumes:
-      - $HOME/kafka_data_3:/bitnami/kafka
+      - kafka_data_3:/bitnami/kafka
+
+volumes:
+  kafka_data_1:
+  kafka_data_2:
+  kafka_data_3:
