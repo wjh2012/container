@@ -32,12 +32,14 @@ services:
     build:
       context: ${CONTEXT_PATH}
       dockerfile: Dockerfile
+      args:
+        APP_DIR: ${WORK_DIR}
     ports:
       - ${SERVER_EXPOSED_PORT}:${SERVER_INTERNAL_PORT}
     depends_on:
       - with_mysql
     volumes:
-      - .:/app
+      - .:${WORK_DIR}
     deploy:
       resources:
         reservations:

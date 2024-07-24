@@ -4,10 +4,12 @@ services:
     build:
       context: ${CONTEXT_PATH}
       dockerfile: Dockerfile
+      args:
+        APP_DIR: ${WORK_DIR}
     ports:
       - ${EXPOSED_PORT}:${INTERNAL_PORT}
     volumes:
-      - .:/app
+      - .:${WORK_DIR}
     deploy:
       resources:
         reservations:

@@ -6,11 +6,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Expose the application port
 EXPOSE 1004
 
+ARG APP_DIR
+
 # Set the working directory
-WORKDIR /app
+WORKDIR ${APP_DIR}
 
 # Copy application files
-ADD ./requirements.txt /app/requirements.txt
+ADD ./requirements.txt ${APP_DIR}/requirements.txt
 
 # Install necessary tools and dependencies
 RUN apt-get update && \
