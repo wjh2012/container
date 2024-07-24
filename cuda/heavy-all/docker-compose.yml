@@ -1,0 +1,60 @@
+services:
+  with_mysql:
+    container_name: ${DB_CONTAINER_NAME}
+    image: mysql:8.0.27
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - with_db_volume:/var/lib/mysql
+      - ${DB_INIT_SQL}:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h 127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} || exit 1",
+        ]
+      interval: 15s
+      timeout: 20s
+      retries: 10
+      start_period: 30s
+    networks:
+      - with_network
+    env_file:
+      - .env
+
+  with_server:
+    container_name: ${SERVER_CONTAINER_NAME}
+    build:
+      context: ${CONTEXT_PATH}
+      dockerfile: Dockerfile
+    ports:
+      - ${SERVER_EXPOSED_PORT}:${SERVER_INTERNAL_PORT}
+    depends_on:
+      - with_mysql
+    volumes:
+      - .:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - with_network
+    env_file:
+      - .env
+
+volumes:
+  with_db_volume:
+    name: ${DB_VOLUME_NAME}
+
+networks:
+  with_network:
+    name: ${NETWORK_NAME}
+    driver: bridge

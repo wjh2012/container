@@ -1,0 +1,19 @@
+services:
+  fast-api:
+    container_name: ${CONTAINER_NAME}
+    build:
+      context: ${CONTEXT_PATH}
+      dockerfile: Dockerfile
+    ports:
+      - ${EXPOSED_PORT}:${INTERNAL_PORT}
+    volumes:
+      - .:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    env_file:
+      - .env

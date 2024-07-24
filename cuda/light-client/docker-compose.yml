@@ -1,0 +1,19 @@
+services:
+  flask:
+    container_name: ${CONTAINER_NAME}
+    build:
+      context: ${CONTEXT_PATH}
+      dockerfile: Dockerfile
+    ports:
+      - ${EXPOSED_PORT}:${INTERNAL_PORT}
+    volumes:
+      - .:/app
+    networks:
+      - flask_network
+    env_file:
+      - .env
+
+networks:
+  flask_network:
+    name: ${NETWORK_NAME}
+    external: true

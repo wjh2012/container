@@ -1,0 +1,17 @@
+services:
+  ai-ocr-front:
+    container_name: ai-ocr-front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 1006:1004
+    volumes:
+      - .:/ai-ocr-front
+    networks:
+      - withocr_network
+
+networks:
+  withocr_network:
+    external:
+      name: withocr_network_name
