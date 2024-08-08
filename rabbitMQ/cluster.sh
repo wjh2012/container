@@ -1,3 +1,5 @@
+#!/bin/sh
+
 docker exec -it rabbitmq2 rabbitmqctl stop_app
 docker exec -it rabbitmq2 rabbitmqctl reset
 docker exec -it rabbitmq2 rabbitmqctl join_cluster rabbit@rabbitmq1
