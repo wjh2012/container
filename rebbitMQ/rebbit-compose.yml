@@ -1,0 +1,47 @@
+services:
+  rebbitmq1:
+    image: rabbitmq:latest
+    container_name: rabbitmq1
+    volumes:
+      - rabbitmq1data:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_NODENAME: "rabbit@rabbitmq1"
+      RABBITMQ_ERLANG_COOKIE: "RabbitMQ-COOKIE"
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+  rebbitmq2:
+    image: rabbitmq:latest
+    container_name: rebbitmq2
+    volumes:
+      - rabbitmq2data:/var/lib/rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      RABBITMQ_NODENAME: "rabbit@rabbitmq2"
+      RABBITMQ_ERLANG_COOKIE: "RabbitMQ-COOKIE"
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+  rebbitmq3:
+    image: rabbitmq:latest
+    container_name: rebbitmq3
+    volumes:
+      - rabbitmq3data:/var/lib/rabbitmq
+    ports:
+      - "5674:5672"
+      - "15674:15672"
+    environment:
+      RABBITMQ_NODENAME: "rabbit@rebbitmq3"
+      RABBITMQ_ERLANG_COOKIE: "RabbitMQ-COOKIE"
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+volumes:
+  rabbitmq1data:
+  rabbitmq2data:
+  rabbitmq3data:
