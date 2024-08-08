@@ -1,6 +1,6 @@
 services:
   rebbitmq1:
-    image: rabbitmq:latest
+    image: rabbitmq:management-alpine
     container_name: rabbitmq1
     volumes:
       - rabbitmq1data:/var/lib/rabbitmq
@@ -14,7 +14,7 @@ services:
       RABBITMQ_DEFAULT_PASS: admin
 
   rebbitmq2:
-    image: rabbitmq:latest
+    image: rabbitmq:management-alpine
     container_name: rebbitmq2
     volumes:
       - rabbitmq2data:/var/lib/rabbitmq
@@ -28,7 +28,7 @@ services:
       RABBITMQ_DEFAULT_PASS: admin
 
   rebbitmq3:
-    image: rabbitmq:latest
+    image: rabbitmq:management-alpine
     container_name: rebbitmq3
     volumes:
       - rabbitmq3data:/var/lib/rabbitmq
