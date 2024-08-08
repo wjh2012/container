@@ -5,6 +5,9 @@ ARG APP_PORT
 
 ENV UVICORN_PORT=$APP_PORT
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Seoul
+
 # Expose the application port
 EXPOSE ${UVICORN_PORT}
 
@@ -12,7 +15,7 @@ EXPOSE ${UVICORN_PORT}
 WORKDIR ${APP_DIR}
 
 RUN apt-get update && \
-    apt-get install -y python3-pip python3-dev python-is-python3 pkg-config libmysqlclient-dev && \
+    apt-get install -y python3-pip python3-dev python-is-python3 pkg-config libmysqlclient-dev tzdata && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy application files
