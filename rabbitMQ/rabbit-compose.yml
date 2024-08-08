@@ -1,5 +1,5 @@
 services:
-  rebbitmq1:
+  rabbitmq1:
     image: rabbitmq:management-alpine
     container_name: rabbitmq1
     volumes:
@@ -13,9 +13,9 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
 
-  rebbitmq2:
+  rabbitmq2:
     image: rabbitmq:management-alpine
-    container_name: rebbitmq2
+    container_name: rabbitmq2
     volumes:
       - rabbitmq2data:/var/lib/rabbitmq
     ports:
@@ -27,16 +27,16 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
 
-  rebbitmq3:
+  rabbitmq3:
     image: rabbitmq:management-alpine
-    container_name: rebbitmq3
+    container_name: rabbitmq3
     volumes:
       - rabbitmq3data:/var/lib/rabbitmq
     ports:
       - "5674:5672"
       - "15674:15672"
     environment:
-      RABBITMQ_NODENAME: "rabbit@rebbitmq3"
+      RABBITMQ_NODENAME: "rabbit@rabbitmq3"
       RABBITMQ_ERLANG_COOKIE: "RabbitMQ-COOKIE"
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
