@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         APP_DIR: ${WORK_DIR}
+        APP_PORT: ${INTERNAL_PORT}
     ports:
       - ${EXPOSED_PORT}:${INTERNAL_PORT}
     volumes:
