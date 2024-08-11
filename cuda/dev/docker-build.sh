@@ -1,0 +1,1 @@
+docker run -d --name test --gpus all -p 11022:22 -v C:\Users\wjh20\Desktop\prj\fastApi-practice:/workspace/prj/fastApi-practice cuda-dev
