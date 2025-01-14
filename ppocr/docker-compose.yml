@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ppocr:
+    image: ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0rc0-gpu-cuda12.3-cudnn9.0-trt8.6
+    container_name: ppocr
+    # shm_size: "64G" # 컨테이너의 공유 메모리 크기 설정
+    ipc: host # 공유 메모리 설정 추가
+    # network_mode: "host" # 호스트 네트워크 사용
+    network_mode: "bridge" # 호스트 네트워크 사용
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/paddle # 현재 디렉토리를 컨테이너의 /paddle 디렉토리로 마운트
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ] # GPU 사용을 위한 설정
+
+# Docker Compose 사용법:
+# 1. docker-compose.yml 파일 저장
+# 2. 아래 명령어로 컨테이너 실행 및 생성
+#    docker-compose up -d
+# 3. 실행 중인 컨테이너에 접근
+#    docker exec -it ppocr /bin/bash
