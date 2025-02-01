@@ -1,0 +1,17 @@
+services:
+  rabbitmq1:
+    image: rabbitmq:management-alpine
+    container_name: rabbitmq1
+    volumes:
+      - rabbitmq1data:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_NODENAME: "rabbit@rabbitmq1"
+      RABBITMQ_ERLANG_COOKIE: "RabbitMQ-COOKIE"
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+volumes:
+  rabbitmq1data:
