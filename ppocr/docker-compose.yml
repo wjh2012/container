@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   ppocr:
-    image: ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0rc0-gpu-cuda12.3-cudnn9.0-trt8.6
+    image: paddlepaddle/paddle:2.6.2-gpu-cuda11.7-cudnn8.4-trt8.4
     container_name: ppocr
     # shm_size: "64G" # 컨테이너의 공유 메모리 크기 설정
     ipc: host # 공유 메모리 설정 추가
@@ -33,4 +31,3 @@ services:
 
 # 비밀번호 설정
 # passwd root
-
