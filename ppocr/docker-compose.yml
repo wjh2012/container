@@ -1,6 +1,6 @@
 services:
   ppocr:
-    image: registry.baidubce.com/paddlepaddle/paddle:2.6.1
+    image: paddlepaddle/paddle:2.6.2
     container_name: ppocr
     # shm_size: "64G" # 컨테이너의 공유 메모리 크기 설정
     ipc: host # 공유 메모리 설정 추가
@@ -9,7 +9,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - .:/paddle # 현재 디렉토리를 컨테이너의 /paddle 디렉토리로 마운트
+      - .:/paddle_custom # 현재 디렉토리를 컨테이너의 /paddle 디렉토리로 마운트
     ports:
       - "22222:22" # SSH 접근을 위한 포트 설정
     deploy:
