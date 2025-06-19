@@ -4,25 +4,25 @@ services:
   master:
     image: chrislusf/seaweedfs # use a remote image
     ports:
-      - 9333:9333
-      - 19333:19333
-      - 9324:9324
+      - 9333:9333 # ui
+      - 19333:19333 # grpc
+      - 9324:9324 # metric
     command: "master -ip=master -ip.bind=0.0.0.0 -metricsPort=9324"
   volume:
     image: chrislusf/seaweedfs # use a remote image
     ports:
-      - 8080:8080
-      - 18080:18080
-      - 9325:9325
+      - 8080:8080 # http
+      - 18080:18080 # grpc
+      - 9325:9325 # metric
     command: 'volume -mserver="master:9333" -ip.bind=0.0.0.0 -port=8080 -metricsPort=9325'
     depends_on:
       - master
   filer:
     image: chrislusf/seaweedfs # use a remote image
     ports:
-      - 8888:8888 # UI
-      - 18888:18888
-      - 9326:9326
+      - 8888:8888 # ui
+      - 18888:18888 # grpc
+      - 9326:9326 # metric
     command: 'filer -master="master:9333" -ip.bind=0.0.0.0 -metricsPort=9326'
     tty: true
     stdin_open: true
@@ -32,8 +32,8 @@ services:
   s3:
     image: chrislusf/seaweedfs # use a remote image
     ports:
-      - 8333:8333
-      - 9327:9327
+      - 8333:8333 # s3 api http
+      - 9327:9327 # metric
     command: 's3 -filer="filer:8888" -ip.bind=0.0.0.0 -metricsPort=9327'
     depends_on:
       - master
@@ -42,7 +42,7 @@ services:
   webdav:
     image: chrislusf/seaweedfs # use a remote image
     ports:
-      - 7333:7333
+      - 7333:7333 # file system
     command: 'webdav -filer="filer:8888"'
     depends_on:
       - master
