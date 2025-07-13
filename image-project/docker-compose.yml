@@ -1,0 +1,21 @@
+services:
+  image-validation-worker:
+    container_name: image-validation-worker
+    build:
+      context: ./image-validation-worker
+      dockerfile: Dockerfile
+    command: uv run app/main.py
+
+  image-ocr-worker:
+    container_name: image-ocr-worker
+    build:
+      context: ./image-ocr-worker
+      dockerfile: Dockerfile
+    command: uv run app/main.py
+
+  thumbnail-worker:
+    container_name: thumbnail-worker
+    build:
+      context: ./thumbnail-worker
+      dockerfile: Dockerfile
+    command: uv run app/main.py
