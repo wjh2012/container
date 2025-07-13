@@ -4,7 +4,8 @@ services:
     build:
       context: ./image-validation-worker
       dockerfile: Dockerfile
-    command: uv run app/main.py
+    command: >
+      bash -c "alembic upgrade head && uv run app/main.py"
 
   image-ocr-worker:
     container_name: image-ocr-worker
@@ -18,4 +19,5 @@ services:
     build:
       context: ./thumbnail-worker
       dockerfile: Dockerfile
-    command: uv run app/main.py
+    command: >
+      bash -c "alembic upgrade head && uv run app/main.py"
