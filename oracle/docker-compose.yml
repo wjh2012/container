@@ -2,10 +2,13 @@ version: '3.8'
 
 services:
   oraclelinux:
-    image: oraclelinux:8.10
+    build:
+      context: .
     container_name: oracle
     tty: true
     stdin_open: true
     volumes:
       - .:/workspace
     working_dir: /workspace
+    ports:
+      - 31092:31092
