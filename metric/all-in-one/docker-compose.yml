@@ -14,7 +14,9 @@ services:
     ports:
       - "3000:3000"
     restart: unless-stopped
-
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
@@ -34,3 +36,15 @@ services:
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - "8080:8080"  # WSL 호스트에서 접근 가능하게
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
