@@ -7,7 +7,9 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     restart: unless-stopped
-
+    networks:
+      - custom_network
+      
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -16,6 +18,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./grafana/data:/var/lib/grafana
+    networks:
+      - custom_network
       
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -27,7 +31,9 @@ services:
     pid: host
     volumes:
       - '/:/host:ro'
-
+    networks:
+      - custom_network
+      
   dcgm-exporter:
     image: nvcr.io/nvidia/k8s/dcgm-exporter:4.2.3-4.3.0-ubuntu22.04
     container_name: dcgm_exporter
@@ -36,6 +42,8 @@ services:
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+    networks:
+      - custom_network
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -48,3 +56,10 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge
+    name: ${NETWORK_NAME}
