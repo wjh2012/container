@@ -770,7 +770,7 @@
           "decimals": 1,
           "mappings": [],
           "max": 48,
-          "min": 1,
+          "min": 0,
           "thresholds": {
             "mode": "percentage",
             "steps": [
@@ -779,7 +779,7 @@
               },
               {
                 "color": "rgba(237, 129, 40, 0.89)",
-                "value": 75
+                "value": 80
               },
               {
                 "color": "rgba(245, 54, 54, 0.9)",
@@ -816,11 +816,12 @@
         "wideLayout": true
       },
       "pluginVersion": "12.0.2",
+      "repeatDirection": "h",
       "targets": [
         {
           "editorMode": "code",
           "exemplar": false,
-          "expr": "DCGM_FI_DEV_FB_USED / 1024",
+          "expr": "avg_over_time(DCGM_FI_DEV_FB_USED[5m]) / 1024",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -921,7 +922,7 @@
           "refId": "A"
         }
       ],
-      "title": "NGINX Status for $nginx_instance",
+      "title": "로드밸런서",
       "type": "stat"
     },
     {
@@ -1114,7 +1115,7 @@
             "type": "prometheus"
           },
           "editorMode": "code",
-          "expr": "rate(container_cpu_user_seconds_total{name=~\".*th5-ocr.*\"}[5m]) * 100\r\nunless ignoring(name) absent(container_cpu_user_seconds_total{name=~\".*th5-ocr.*\"})",
+          "expr": "rate(container_cpu_user_seconds_total{name=~\".*th5-ocr-th5.*\"}[5m]) * 100\r\nunless ignoring(name) absent(container_cpu_user_seconds_total{name=~\".*th5-ocr-th5.*\"})",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "cpu",
@@ -1296,5 +1297,5 @@
   "timezone": "browser",
   "title": "custom dashboard",
   "uid": "90175286-37bc-46ad-8fc8-f3c36ae52e70",
-  "version": 11
+  "version": 17
 }
