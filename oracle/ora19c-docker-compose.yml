@@ -7,7 +7,6 @@ services:
     ports:
       - "15211:1521"
     environment:
-      # ↓ 원하는 값으로 바로 수정
       ORACLE_SID: "ORACLE"
       ORACLE_PWD: "ORACLE"
       ORACLE_CHARACTERSET: "AL32UTF8"
