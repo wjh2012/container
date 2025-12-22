@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  oracle-19c:
+    image: doctorkirk/oracle-19c
+    container_name: oracle-19c
+    ports:
+      - "15211:1521"
+    environment:
+      ORACLE_SID: "ORACLE"
+      ORACLE_PWD: "ORACLE"
+      ORACLE_CHARACTERSET: "AL32UTF8"
+    restart: unless-stopped
