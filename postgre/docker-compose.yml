@@ -8,8 +8,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: image_produce
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     volumes:
-      - postgres_volume:/var/lib/postgresql/data
+      - postgres_volume:/var/lib/postgresql
 
 volumes:
   postgres_volume:
